@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 91px;
+  padding: 0 calc(50% - 585px);
+  color: wheat;
+  background-color: rgb(80, 68, 68);
+  margin-bottom: 50px;
+}
+
+.enter {
+  font-size: 24px;
+  font-weight: 400;
+  padding: 10px;
+  
+  &:hover {
+    color: rgb(11, 165, 165);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  }
+}

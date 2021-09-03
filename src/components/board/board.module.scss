@@ -1,0 +1,85 @@
+.section {
+  padding: 0 calc(50% - 700px);
+  margin: 0 20px;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.item {
+  width: 280px;
+  background-color: rgb(48, 48, 48);
+}
+
+.title {
+  background-color: rgb(77, 77, 77);
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+  padding: 13px;
+
+  &Hold {
+    background-color: chocolate;
+  }
+
+  &Progress {
+    background-color: rgb(40, 105, 148);
+  }
+
+  &Review {
+    background-color: rgb(218, 186, 47);
+  }
+
+  &Approved {
+    background-color: rgb(74, 190, 119);
+  }
+}
+
+.button {
+  position: relative;
+  width: 180px;
+  height: 25px;
+  margin: 0;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  right: 11px;
+  top: 4px;
+  border: none;
+  background-color: inherit;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    height: 14px;
+    width: 2px;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  &::after {
+    left: 15px;
+  }
+
+  &::before {
+    transform: rotate(90deg);
+    left: 15px;
+  }
+
+  &:hover {
+    color: rgb(11, 165, 165);
+
+    &::after,
+    &::before {
+      background-color: rgb(11, 165, 165);
+    }
+  }
+}
