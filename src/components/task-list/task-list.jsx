@@ -1,26 +1,55 @@
 import React from 'react';
+import { useState } from 'react';
 import styles from './task-list.module.scss';
+import Task from '../task/task';
+import Note from '../note/note';
 
-function TaskList() {
+function TaskList({title, tasks}) {
+
+  const [newTask, setNewTask] = useState(false);
+
   return (
-    <ul className={styles.list}>
-      <li className={styles.task}>
-        <button className={styles.button} type="button"></button>
-        <h2 className={styles.title}>
-          <b>id: </b>
-          <span className={styles.id}>11111111111</span>
-        </h2>
-        <p className={styles.note}>текст asas das  asdaqw q wdasd asqw e sdthg sdfsdtgsd sdfs dsdfwe sdf </p>
-      </li>
-      <li className={styles.task}>
-        <button className={styles.button} type="button"></button>
-        <h2 className={styles.title}>
-          <b>id: </b>
-          <span className={styles.id}>11111111112</span>
-        </h2>
-        <p className={styles.note}>текст</p>
-      </li>
-    </ul>
+    <>
+      <p className={`${styles.title}`}>{title} <span>({tasks.length})</span></p>
+      <ul className={styles.list}>
+        {tasks ? (tasks.map((item) => {
+          return (
+            <li
+              key={item.id}
+              id={item.id}
+              className={styles.task}
+              draggable="true"
+              onDragStart={(evt) => {
+                evt.dataTransfer.effectAllowed = "move";
+                evt.dataTransfer.setData("text/plain", evt.target.id);
+            }}
+            >
+            <Task
+              task={item}
+            />
+          </li>
+          )
+        })) : (
+          ''
+        )}
+      </ul>
+      {newTask ? (
+        <Note
+          setNewTask={setNewTask}
+          group={title}
+        />
+      ) : (
+      <button
+        className={styles.button}
+        type="button"
+        onClick={()=> setNewTask(true)}
+      >
+        Добавить карточку
+      </button>
+      )}
+      
+      
+    </>
   );
 }
 

@@ -1,22 +1,21 @@
 import { ActionType } from './action';
-
-const AMOUNT_CONVERSIONS = 10;
+import { deleteComments, loadFromLocalStorage } from '../utils/utils';
 
 const initialState = {
-  convertHistory: [],
+  tasks: loadFromLocalStorage(),
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHANGE_HISTORY:
+    case ActionType.ADD_TASK:
       return {
         ...state,
-        convertHistory: [action.payload, ...state.convertHistory].slice(0, AMOUNT_CONVERSIONS),
+        tasks: [...state.tasks, action.payload],
       };
-    case ActionType.DELETE_HISTORY:
+    case ActionType.DELETE_TASK:
       return {
         ...state,
-        convertHistory: [],
+        tasks: deleteComments(state.tasks, action.payload),
       };
     default:
       return state;

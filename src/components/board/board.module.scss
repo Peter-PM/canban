@@ -15,71 +15,60 @@
 .item {
   width: 280px;
   background-color: rgb(48, 48, 48);
-}
 
-.title {
-  background-color: rgb(77, 77, 77);
-  font-size: 18px;
-  color: rgb(255, 255, 255);
-  text-transform: uppercase;
-  padding: 13px;
-
-  &Hold {
-    background-color: chocolate;
+  &:first-child > p {
+    background-color: rgb(206, 103, 30);
   }
 
-  &Progress {
+  &:nth-child(2) > p {
     background-color: rgb(40, 105, 148);
   }
 
-  &Review {
+  &:nth-child(3) > p {
     background-color: rgb(218, 186, 47);
   }
 
-  &Approved {
+  &:last-child > p {
     background-color: rgb(74, 190, 119);
   }
-}
 
-.button {
-  position: relative;
-  width: 180px;
-  height: 25px;
-  margin: 0;
-  margin-left: 15px;
-  margin-bottom: 10px;
-  padding-left: 20px;
-  right: 11px;
-  top: 4px;
-  border: none;
-  background-color: inherit;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.4);
-  
-  &::after,
-  &::before {
-    content: "";
-    position: absolute;
-    height: 14px;
-    width: 2px;
-    background-color: rgba(255, 255, 255, 0.4);
-  }
-
-  &::after {
-    left: 15px;
-  }
-
-  &::before {
-    transform: rotate(90deg);
-    left: 15px;
-  }
-
-  &:hover {
-    color: rgb(11, 165, 165);
-
+  &:first-child > button {
+    &:hover {
+      color: rgb(206, 103, 30);
+    }
     &::after,
     &::before {
-      background-color: rgb(11, 165, 165);
+      background-color: rgb(206, 103, 30);
+    }
+  }
+
+  &:nth-child(2) > button {
+    &:hover {
+      color: rgb(40, 105, 148);
+    }
+    &::after,
+    &::before {
+      background-color: rgb(40, 105, 148);
+    }
+  }
+
+  &:nth-child(3) > button {
+    &:hover {
+      color: rgb(218, 186, 47);
+    }
+    &::after,
+    &::before {
+      background-color: rgb(218, 186, 47);
+    }
+  }
+
+  &:last-child > button {
+    &:hover {
+      color: rgb(74, 190, 119);
+    }
+    &::after,
+    &::before {
+      background-color: rgb(74, 190, 119);
     }
   }
 }

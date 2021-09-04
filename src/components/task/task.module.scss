@@ -1,0 +1,55 @@
+.button {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  right: 4px;
+  top: 4px;
+  border: none;
+  background-color: inherit;
+  color: rgba(255, 255, 255, 0.4);
+  
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    height: 12px;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  &::before {
+    transform: rotate(45deg);
+    top: 2px;
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+    top: 2px;
+  }
+
+  &:hover {
+
+    &::after,
+    &::before {
+      background-color: rgb(11, 165, 165);
+    }
+  }
+}
+
+.title {
+  padding-bottom: 15px;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+}
+
+.note {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.id {
+  color: rgba(255, 255, 255, 0.4);
+}

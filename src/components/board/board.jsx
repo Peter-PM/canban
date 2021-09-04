@@ -1,33 +1,80 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import {connect} from 'react-redux';
 import styles from './board.module.scss';
 import TaskList from '../task-list/task-list';
-import Note from '../note/note';
+import { ActionCreator } from '../../store/action';
 
-function Board() {
+
+function Board({tasks, relocTask}) {
+  const Titles = {
+    HOLD: 'On hold',
+    PROGRESS: 'In progress',
+    REVIEW: 'Needs review',
+    APPROVED: 'Approved',
+  };
+
+  const filterTasks = (filter) => {
+    return tasks.filter((item) => item.group === filter)
+  }
+
+  useEffect(() => {
+    window.localStorage.setItem('tasks', JSON.stringify(tasks));
+    console.log(localStorage.getItem('tasks'))
+  }, [tasks]);
+
   return (
     <section className={styles.section}>
       <ul className={styles.list}>
-        <li className={styles.item}>
-          <p className={`${styles.title} ${styles.titleHold}`}>On hold <span>(0)</span></p>
-          <TaskList/>
-          <button className={styles.button} type="button">Добавить карточку</button>
+        <li
+          className={styles.item}
+          onDrop={(evt) => {
+            evt.preventDefault();
+            const data = evt.dataTransfer.getData("text/plain");
+            console.log(data)
+            relocTask({id: data, group: Titles.HOLD})
+          }}
+          onDragOver={(evt) => {
+            evt.preventDefault();
+            evt.dataTransfer.dropEffect = "move";
+            
+          }}
+        >
+          <TaskList
+            title={Titles.HOLD}
+            tasks={filterTasks(Titles.HOLD)}
+          />
         </li>
         <li className={styles.item}>
-          <p className={`${styles.title} ${styles.titleProgress}`}>In progress <span>(0)</span></p>
-          <TaskList/>
-          <button className={styles.button} type="button">Добавить карточку</button>
+          <TaskList
+            title={Titles.PROGRESS}
+            tasks={filterTasks(Titles.PROGRESS)}
+          />
         </li>
         <li className={styles.item}>
-          <p className={`${styles.title} ${styles.titleReview}`}>Needs review <span>(0)</span></p>
-          <button className={styles.button} type="button">Добавить карточку</button>
+          <TaskList
+            title={Titles.REVIEW}
+            tasks={filterTasks(Titles.REVIEW)}
+          />
         </li>
         <li className={styles.item}>
-          <p className={`${styles.title} ${styles.titleApproved}`}>Approved <span>(0)</span></p>
-          <Note/>
+          <TaskList
+            title={Titles.APPROVED}
+            tasks={filterTasks(Titles.APPROVED)}
+          />
         </li>
       </ul>
     </section>
   );
 }
 
-export default Board;
+const mapStateToProps = (state) => ({
+  tasks: state.tasks,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  relocTask(task) {
+    dispatch(ActionCreator.relocTask(task));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

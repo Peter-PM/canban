@@ -1,14 +1,25 @@
 export const ActionType = {
-  CHANGE_HISTORY: 'save-history',
-  DELETE_HISTORY: 'delete-history',
+  ADD_TASK: 'add-task',
+  DELETE_TASK: 'delete-task',
+  SAVE_TASKS: 'save-tasks',
+  RELOCATION_TASKS: 'relocation-task'
 };
 
 export const ActionCreator = {
-  changeHistory: (operation) => ({
-    type: ActionType.CHANGE_HISTORY,
-    payload: operation,
+  addTask: (task) => ({
+    type: ActionType.ADD_TASK,
+    payload: task,
   }),
-  deleteHistory: () => ({
-    type: ActionType.DELETE_HISTORY,
+  deleteTask: (task) => ({
+    type: ActionType.DELETE_TASK,
+    payload: task,
+  }),
+  saveTasks: (task) => ({
+    type: ActionType.SAVE_TASKS,
+    payload: task,
+  }),
+  relocTask: (task) => ({
+    type: ActionType.RELOCATION_TASKS,
+    payload: task,
   }),
 };
