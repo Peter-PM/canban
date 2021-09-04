@@ -6,7 +6,7 @@ import { ActionCreator } from '../../store/action';
 import styles from './note.module.scss';
 
 
-function Note({setNewTask, group, addTask}) {
+function Note({setNewTask, row, addTask}) {
 
   const [task, setTask] = useState('')
 
@@ -27,7 +27,7 @@ function Note({setNewTask, group, addTask}) {
         type="submit"
         onClick={(evt) => {
           evt.preventDefault();
-          task ? addTask({group: group, id: nanoid(), text: task}) : setNewTask(false);
+          task ? addTask({row: row, id: nanoid(), text: task}) : setNewTask(false);
           setNewTask(false);
         }}
         

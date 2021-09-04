@@ -1,4 +1,4 @@
-export const deleteComments = (array, id) => {
+export const deleteTasks = (array, id) => {
   const index = array.findIndex((task) => task.id === id);
   
   if (index === -1) {

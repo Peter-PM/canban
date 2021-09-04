@@ -16,6 +16,11 @@
   width: 280px;
   background-color: rgb(48, 48, 48);
 
+  &Active {
+    background-color: rgb(46, 46, 46);
+    box-shadow: 0 0 5px rgba(74, 190, 118, 0.308);
+  }
+
   &:first-child > p {
     background-color: rgb(206, 103, 30);
   }

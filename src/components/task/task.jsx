@@ -9,6 +9,7 @@ function Task({task, removeTask}) {
       <button
         className={styles.button}
         type="button"
+        aria-label="Удалить задачу"
         onClick={() => removeTask(task.id)}
       >        
       </button>

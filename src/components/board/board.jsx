@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';
 import styles from './board.module.scss';
 import TaskList from '../task-list/task-list';
@@ -6,62 +6,71 @@ import { ActionCreator } from '../../store/action';
 
 
 function Board({tasks, relocTask}) {
-  const Titles = {
-    HOLD: 'On hold',
-    PROGRESS: 'In progress',
-    REVIEW: 'Needs review',
-    APPROVED: 'Approved',
-  };
+
+  const [isDragOver, setIsDragOver] = useState(false)
+
+  const Titles = [
+    {
+      title: 'On hold',
+      row: 1,
+    },
+    {
+      title: 'In progress',
+      row: 2,
+    },
+    {
+      title: 'Needs review',
+      row: 3,
+    },
+    {
+      title: 'Approved',
+      row: 4,
+    },
+  ];
 
   const filterTasks = (filter) => {
-    return tasks.filter((item) => item.group === filter)
+    return tasks.filter((item) => item.row === filter)
   }
 
   useEffect(() => {
     window.localStorage.setItem('tasks', JSON.stringify(tasks));
-    console.log(localStorage.getItem('tasks'))
   }, [tasks]);
+
+  const dropHandler = (evt, row) => {
+    evt.preventDefault();
+    relocTask(row);
+    setIsDragOver(false);
+  }
+
+  const dragOverHandler = (evt) => {
+    evt.preventDefault();
+    setIsDragOver(true);
+  }
+
+  const dragEndHandler = (evt) => {
+    evt.preventDefault();
+    setIsDragOver(false);
+  }
+
 
   return (
     <section className={styles.section}>
       <ul className={styles.list}>
-        <li
-          className={styles.item}
-          onDrop={(evt) => {
-            evt.preventDefault();
-            const data = evt.dataTransfer.getData("text/plain");
-            console.log(data)
-            relocTask({id: data, group: Titles.HOLD})
-          }}
-          onDragOver={(evt) => {
-            evt.preventDefault();
-            evt.dataTransfer.dropEffect = "move";
-            
-          }}
+        {Titles.map((item) => 
+          <li
+          key={item.row}
+          className={`${styles.item} ${isDragOver ? styles.itemActive : ''}`}
+          onDrop={(evt) => dropHandler(evt, item.row)}
+          onDragOver={(evt) => dragOverHandler(evt)}
+          onDragEnd={(evt) => dragEndHandler(evt)}
         >
           <TaskList
-            title={Titles.HOLD}
-            tasks={filterTasks(Titles.HOLD)}
+            title={item.title}
+            tasks={filterTasks(item.row)}
+            row={item.row}
           />
         </li>
-        <li className={styles.item}>
-          <TaskList
-            title={Titles.PROGRESS}
-            tasks={filterTasks(Titles.PROGRESS)}
-          />
-        </li>
-        <li className={styles.item}>
-          <TaskList
-            title={Titles.REVIEW}
-            tasks={filterTasks(Titles.REVIEW)}
-          />
-        </li>
-        <li className={styles.item}>
-          <TaskList
-            title={Titles.APPROVED}
-            tasks={filterTasks(Titles.APPROVED)}
-          />
-        </li>
+        )}
       </ul>
     </section>
   );

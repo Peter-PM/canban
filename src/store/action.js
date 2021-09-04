@@ -2,7 +2,8 @@ export const ActionType = {
   ADD_TASK: 'add-task',
   DELETE_TASK: 'delete-task',
   SAVE_TASKS: 'save-tasks',
-  RELOCATION_TASKS: 'relocation-task'
+  RELOCATION_TASK: 'relocation-task',
+  ADD_TASK_TO_CURRENT: 'add-current-task',
 };
 
 export const ActionCreator = {
@@ -19,7 +20,11 @@ export const ActionCreator = {
     payload: task,
   }),
   relocTask: (task) => ({
-    type: ActionType.RELOCATION_TASKS,
+    type: ActionType.RELOCATION_TASK,
+    payload: task,
+  }),
+  addCurrent: (task) => ({
+    type: ActionType.ADD_TASK_TO_CURRENT,
     payload: task,
   }),
 };
