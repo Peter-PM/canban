@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import {connect} from 'react-redux';
 import { ActionCreator } from '../../store/action';
@@ -63,6 +64,24 @@ function TaskList({title, row, tasks, addTaskInCurrent}) {
     </>
   );
 }
+
+TaskList.propTypes = {
+  tasks: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    row: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]).isRequired,
+    seq_num: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  })).isRequired,
+  row: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  title: PropTypes.string.isRequired,
+  addTaskInCurrent: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   addTaskInCurrent(task) {

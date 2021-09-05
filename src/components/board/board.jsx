@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import styles from './board.module.scss';
 import TaskList from '../task-list/task-list';
@@ -56,6 +57,22 @@ function Board({tasks, currentTask}) {
     </section>
   );
 }
+
+Board.propTypes = {
+  tasks: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    row: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]).isRequired,
+    seq_num: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  })).isRequired,
+  currentTask: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]).isRequired,
+};
 
 const mapStateToProps = (state) => ({
   tasks: state.tasks,

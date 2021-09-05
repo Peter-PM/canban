@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styles from './note.module.scss';
 import { postTask } from '../api/api';
@@ -40,5 +41,13 @@ function Note({setNewTask, row}) {
     </form>
   );
 }
+
+Note.propTypes = {
+  setNewTask: PropTypes.func.isRequired,
+  row: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+};
 
 export default Note;

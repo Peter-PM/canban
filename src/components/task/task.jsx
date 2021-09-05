@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './task.module.scss';
 import { deleteTask} from '../api/api';
 
@@ -24,5 +25,18 @@ function Task({task}) {
     </>
   );
 }
+
+Task.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    row: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]).isRequired,
+    seq_num: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 
 export default Task;
