@@ -1,7 +1,7 @@
 const userInfo = {
-  "username": "wwwws",
+  "username": "sssss",
   "email": "",
-  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4MTUsInVzZXJuYW1lIjoid3d3d3MiLCJleHAiOjE2MzA4NDA1NzAsImVtYWlsIjoiIiwib3JpZ19pYXQiOjE2MzA4MzY5NzB9.2Jx5sQh4W92Pn-KVyXxhDmYIaITAFUAizQdltsmuY7o"
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4MTYsInVzZXJuYW1lIjoic3Nzc3MiLCJleHAiOjE2MzA4NDU1NDgsImVtYWlsIjoiIiwib3JpZ19pYXQiOjE2MzA4NDE5NDh9.3MWNyJf5NpoMzlu2qQRwjJxAfnT6nIUmUyk9OOLb6oo"
 };
 
 export const TOKEN = userInfo.token;

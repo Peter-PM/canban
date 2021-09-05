@@ -1,8 +1,10 @@
 .header {
   display: flex;
+  justify-content: center;
   align-items: center;
-  height: 91px;
-  padding: 0 calc(50% - 585px);
+  flex-wrap: wrap;
+  min-height: 91px;
+  padding: 0 calc(50% - 700px);
   background-color: rgb(71, 49, 49);
   margin-bottom: 50px;
 }

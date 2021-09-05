@@ -6,12 +6,14 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <button
-        type="button"
+      <a
+        href={'https://trello.backend.tests.nekidaem.ru/api/v1/users/create/'}
+        target="_blank"
+        rel="noreferrer"
         className={styles.enter}
       >
-        Canban
-      </button>
+        Сгенерировать токен
+      </a>
       <button
         type="button"
         className={styles.load}
