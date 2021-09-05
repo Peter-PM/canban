@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './task.module.scss';
 import { deleteTask} from '../api/api';
 
-function Task({task, removeTask}) {
+function Task({task}) {
 
   const deleteButtonHandler = (data) => {
     deleteTask(data);

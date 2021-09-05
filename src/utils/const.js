@@ -1,10 +1,10 @@
 const userInfo = {
-    "username": "mpa",
-    "email": "",
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4MTEsInVzZXJuYW1lIjoibXBhIiwiZXhwIjoxNjMwODA2NDU0LCJlbWFpbCI6IiIsIm9yaWdfaWF0IjoxNjMwODAyODU0fQ.TdHT6eaywDUEP3I_BMm0lCW4ib8vaaY_tvpSVqt3TwE"
+  "username": "йййц",
+  "email": "",
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4MTIsInVzZXJuYW1lIjoiXHUwNDM5XHUwNDM5XHUwNDM5XHUwNDQ2IiwiZXhwIjoxNjMwODM1Mjc2LCJlbWFpbCI6IiIsIm9yaWdfaWF0IjoxNjMwODMxNjc2fQ.SvkKAocqaUSG4elCMKssdXh6xvmmMX1AvuJGu94Rnn0"
 };
 
-export const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4MTEsInVzZXJuYW1lIjoibXBhIiwiZXhwIjoxNjMwODA2NDU0LCJlbWFpbCI6IiIsIm9yaWdfaWF0IjoxNjMwODAyODU0fQ.TdHT6eaywDUEP3I_BMm0lCW4ib8vaaY_tvpSVqt3TwE';
+export const TOKEN = userInfo.token;
 
 export const END_POINT = 'https://trello.backend.tests.nekidaem.ru/api/v1/cards/';
 
@@ -15,4 +15,21 @@ export const Method = {
   DELETE: 'DELETE',
 }
 
-
+export const Titles = [
+  {
+    title: 'On hold',
+    row: 0,
+  },
+  {
+    title: 'In progress',
+    row: 1,
+  },
+  {
+    title: 'Needs review',
+    row: 2,
+  },
+  {
+    title: 'Approved',
+    row: 3,
+  },
+];

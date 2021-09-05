@@ -1,11 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
-import {connect} from 'react-redux';
-import { ActionCreator } from '../../store/action';
 import styles from './note.module.scss';
 import { postTask } from '../api/api';
 
-function Note({setNewTask, row, addTask}) {
+function Note({setNewTask, row}) {
 
   const [taskText, setTask] = useState('')
 
@@ -43,10 +41,4 @@ function Note({setNewTask, row, addTask}) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  addTask(task) {
-    dispatch(ActionCreator.addTask(task));
-  },
-});
-
-export default connect(null, mapDispatchToProps)(Note);
+export default Note;
