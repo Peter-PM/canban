@@ -6,17 +6,13 @@ import styles from './task-list.module.scss';
 import Task from '../task/task';
 import Note from '../note/note';
 
-function TaskList({title, row, tasks, addTaskInCurrent}) {
+function TaskList({allTasks, title, row, tasks, addTaskInCurrent}) {
 
   const [newTask, setNewTask] = useState(false);
 
   const dragStartHandler = (evt, task) => {
     addTaskInCurrent(task);
   };
-
-  const dragEndHandler = (evt) => {
-    
-  }
 
   const dragOverHandler = (evt) => {
     evt.preventDefault();
@@ -38,9 +34,9 @@ function TaskList({title, row, tasks, addTaskInCurrent}) {
               className={styles.task}
               draggable={true}
               onDragStart={(evt) => dragStartHandler(evt, task)}
-              onDragLeave={(evt) => dragEndHandler(evt)}
+              // onDragLeave={(evt) => dragEndHandler(evt)}
               onDragOver={(evt) => dragOverHandler(evt)}
-              onDragEnd={(evt) => dragEndHandler(evt)}
+              // onDragEnd={(evt) => dragEndHandler(evt)}
               onDrop={(evt) => dropHandler(evt, task)}
             >
             <Task
@@ -70,10 +66,15 @@ function TaskList({title, row, tasks, addTaskInCurrent}) {
   );
 }
 
+
+const mapStateToProps = (state) => ({
+  allTasks: state.tasks,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   addTaskInCurrent(task) {
     dispatch(ActionCreator.addCurrent(task));
   },
 });
 
-export default connect(null, mapDispatchToProps)(TaskList);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);

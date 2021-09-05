@@ -1,16 +1,19 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import { ActionCreator } from '../../store/action';
 import styles from './task.module.scss';
+import { deleteTask} from '../api/api';
 
 function Task({task, removeTask}) {
+
+  const deleteButtonHandler = (data) => {
+    deleteTask(data);
+  }
   return (
     <>
       <button
         className={styles.button}
         type="button"
         aria-label="Удалить задачу"
-        onClick={() => removeTask(task.id)}
+        onClick={() => deleteButtonHandler(task.id)}
       >        
       </button>
       <h2 className={styles.title}>
@@ -22,10 +25,4 @@ function Task({task, removeTask}) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  removeTask(id) {
-    dispatch(ActionCreator.deleteTask(id));
-  },
-});
-
-export default connect(null, mapDispatchToProps)(Task);
+export default Task;

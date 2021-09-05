@@ -2,46 +2,46 @@ import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';
 import styles from './board.module.scss';
 import TaskList from '../task-list/task-list';
-import { ActionCreator } from '../../store/action';
+import { updateTask } from '../api/api';
 
-
-function Board({tasks, relocTask}) {
+function Board({tasks, currentTask}) {
 
   const [isDragOver, setIsDragOver] = useState(false)
 
   const Titles = [
     {
       title: 'On hold',
-      row: 1,
+      row: 0,
     },
     {
       title: 'In progress',
-      row: 2,
+      row: 1,
     },
     {
       title: 'Needs review',
-      row: 3,
+      row: 2,
     },
     {
       title: 'Approved',
-      row: 4,
+      row: 3,
     },
   ];
+  
+  useEffect(() => {
+      window.localStorage.setItem('tasks', JSON.stringify(tasks));
+    }, [tasks]);
 
   const filterTasks = (filter) => {
-    return tasks.filter((item) => item.row === filter)
+    return tasks.filter((item) => +item.row === filter)
   }
 
-  useEffect(() => {
-    window.localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
-
+  
   const dropHandler = (evt, row) => {
     evt.preventDefault();
-    relocTask(row);
+    updateTask(currentTask, row)
     setIsDragOver(false);
   }
-
+  
   const dragOverHandler = (evt) => {
     evt.preventDefault();
     setIsDragOver(true);
@@ -78,12 +78,7 @@ function Board({tasks, relocTask}) {
 
 const mapStateToProps = (state) => ({
   tasks: state.tasks,
+  currentTask: state.currentTask,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  relocTask(task) {
-    dispatch(ActionCreator.relocTask(task));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Board);
+export default connect(mapStateToProps, null)(Board);

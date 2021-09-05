@@ -1,14 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import {connect} from 'react-redux';
-import { nanoid } from 'nanoid';
 import { ActionCreator } from '../../store/action';
 import styles from './note.module.scss';
-
+import { postTask } from '../api/api';
 
 function Note({setNewTask, row, addTask}) {
 
-  const [task, setTask] = useState('')
+  const [taskText, setTask] = useState('')
 
   return (
     <form className={styles.form} action="post">
@@ -27,7 +26,7 @@ function Note({setNewTask, row, addTask}) {
         type="submit"
         onClick={(evt) => {
           evt.preventDefault();
-          task ? addTask({row: row, id: nanoid(), text: task}) : setNewTask(false);
+          taskText ? postTask({row: row, text: taskText}) : setNewTask(false);
           setNewTask(false);
         }}
         

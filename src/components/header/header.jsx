@@ -1,10 +1,24 @@
 import React from 'react';
 import styles from './header.module.scss';
+import { loadCards } from '../api/api';
 
 function Header() {
+
   return (
     <header className={styles.header}>
-      <a href="/" className={styles.enter}>Войти в Canban</a>
+      <button
+        type="button"
+        className={styles.enter}
+      >
+        Canban
+      </button>
+      <button
+        type="button"
+        className={styles.load}
+        onClick={() => loadCards()}
+      >
+        Обновить карточки
+      </button>
     </header>
   );
 }
